@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
 
 
 RUN curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
-RUN tar xvf go1.7.4.linux-amd64.tar.gz
+RUN tar xf go1.7.4.linux-amd64.tar.gz
 RUN chown -R root:root ./go
 RUN mv go /usr/local/
 RUN cp /usr/local/go/bin/* /usr/bin/
