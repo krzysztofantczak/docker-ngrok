@@ -4,20 +4,26 @@ MAINTAINER Yannick Pereira-Reis <yannick.pereira.reis@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 ENV TUNNEL_ADDR :4443
-ENV HTTP_ADDR :8080
-ENV HTTPS_ADDR :4433
+ENV HTTP_ADDR :80
+ENV HTTPS_ADDR :443
 
 RUN apt-get update && apt-get install -y --force-yes --no-install-recommends \
-	build-essential \
-	ca-certificates \
-    nano \
-	git \
-	mercurial \
-	golang \
-	ssh \
-	openssl \
-	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+        build-essential \
+        ca-certificates \
+        nano \
+        git \
+        curl \
+        mercurial \
+        ssh \
+        openssl \
+        && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+
+RUN curl -O https://storage.googleapis.com/golang/go1.7.4.linux-amd64.tar.gz
+RUN tar xvf go1.7.4.linux-amd64.tar.gz
+RUN chown -R root:root ./go
+RUN mv go /usr/local/
+RUN cp /usr/local/go/bin/* /usr/bin/
 
 RUN git clone https://github.com/inconshreveable/ngrok.git /root/ngrok
 
@@ -32,6 +38,6 @@ VOLUME /root/ngrok/certs
 
 CMD ["/root/startup.sh"]
 
-EXPOSE 8080
+EXPOSE 80
 EXPOSE 4443
-EXPOSE 4433
+EXPOSE 443
