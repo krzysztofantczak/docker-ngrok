@@ -7,6 +7,6 @@ ngrok:
     environment:
         NGROK_DOMAIN:
     ports:
-        - 8080:8080
+        - 80:80
         - 4443:4443
-        - 4433:4433
+        - 443:443
