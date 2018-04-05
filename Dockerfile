@@ -26,6 +26,7 @@ RUN mv go /usr/local/
 RUN cp /usr/local/go/bin/* /usr/bin/
 
 RUN git clone https://github.com/inconshreveable/ngrok.git /root/ngrok
+RUN curl -o /root/ngrok/assets/client/tls/ngrokroot.crt https://letsencrypt.org/certs/letsencryptauthorityx1.pem
 
 RUN mkdir /root/ngrok/certs
 
